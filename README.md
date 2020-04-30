@@ -34,8 +34,8 @@ $gateway->initialize([
 // Send purchase request
 $response = $gateway->purchase(
     [
-        'amount' => '10.00',
-        'purpose' => 'Instamojo Payment',
+        'amount'     => '10.00',
+        'purpose'    => 'Instamojo Payment',
         'email'      => 'elnurxf@gmail.com',
         'buyer_name' => 'Elnur Akhundov',
         'purpose'    => 'Instamojo Payment',

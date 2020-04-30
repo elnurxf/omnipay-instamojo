@@ -2,8 +2,6 @@
 
 namespace Omnipay\Instamojo\Message;
 
-use Omnipay\Common\Message\NotificationInterface;
-
 /**
  * Class RefundResponse
  * @package Omnipay\Instamojo\Message

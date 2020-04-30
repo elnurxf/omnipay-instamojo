@@ -23,8 +23,8 @@ class NotifyRequest extends AbstractRequest
                 throw new InvalidRequestException("The mac parameter is required");
             }
 
-            $mac_provided = $data['mac'];  // Get the MAC from the POST data
-            unset($data['mac']);  // Remove the MAC key from the data.
+            $mac_provided = $data['mac']; // Get the MAC from the POST data
+            unset($data['mac']); // Remove the MAC key from the data.
             ksort($data, SORT_STRING | SORT_FLAG_CASE);
 
             $mac_calculated = hash_hmac('sha1', implode('|', $data), $this->getSalt());

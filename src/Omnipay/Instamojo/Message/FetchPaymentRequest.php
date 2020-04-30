@@ -28,7 +28,7 @@ class FetchPaymentRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $httpRequest = $this->createRequest('GET', $this->getEndpoint() . 'payment-requests/' . $data['id']);
+        $httpRequest  = $this->createRequest('GET', $this->getEndpoint() . 'payment-requests/' . $data['id'] . '/');
         $jsonResponse = $this->sendRequest($httpRequest);
 
         return $this->response = new Response($this, $jsonResponse);

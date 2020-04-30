@@ -28,7 +28,7 @@ class CompletePurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $httpRequest = $this->createRequest('GET', $this->getEndpoint() . 'payments/' . $data['payment_id']);
+        $httpRequest  = $this->createRequest('GET', $this->getEndpoint() . 'payments/' . $data['payment_id'] . '/');
         $jsonResponse = $this->sendRequest($httpRequest);
 
         return $this->response = new CompletePurchaseResponse($this, $jsonResponse);

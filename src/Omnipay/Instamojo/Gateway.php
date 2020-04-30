@@ -25,9 +25,9 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-            'api_key' => '',
+            'api_key'    => '',
             'auth_token' => '',
-            'salt' => ''
+            'salt'       => '',
         );
     }
 

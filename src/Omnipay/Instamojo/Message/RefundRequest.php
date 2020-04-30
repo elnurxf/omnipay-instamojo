@@ -16,8 +16,8 @@ class RefundRequest extends AbstractRequest
         $data = parent::getData();
         $this->validate('transactionReference');
         $data['payment_id'] = $this->getTransactionReference();
-        $data['type'] = $this->getType();
-        $data['body'] = $this->getBody();
+        $data['type']       = $this->getType();
+        $data['body']       = $this->getBody();
         if ($this->getAmount()) {
             $data['refund_amount'] = $this->getAmount();
         }
@@ -31,7 +31,7 @@ class RefundRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $httpRequest = $this->createRequest('POST', $this->getEndpoint() . 'refunds/', $data);
+        $httpRequest  = $this->createRequest('POST', $this->getEndpoint() . 'refunds/', $data);
         $jsonResponse = $this->sendRequest($httpRequest);
 
         return $this->response = new RefundResponse($this, $jsonResponse);

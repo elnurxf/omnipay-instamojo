@@ -18,17 +18,17 @@ class PurchaseRequest extends AbstractRequest
         $this->validate('amount');
         $this->validate('purpose');
 
-        $data['amount'] = $this->getAmount();
-        $data['purpose'] = $this->getPurpose();
-        $data['buyer_name'] = $this->getBuyerName();
-        $data['email'] = $this->getEmail();
-        $data['phone'] = $this->getPhone();
-        $data['redirect_url'] = $this->getRedirectUrl();
-        $data['webhook'] = $this->getWebhook();
+        $data['amount']                  = $this->getAmount();
+        $data['purpose']                 = $this->getPurpose();
+        $data['buyer_name']              = $this->getBuyerName();
+        $data['email']                   = $this->getEmail();
+        $data['phone']                   = $this->getPhone();
+        $data['redirect_url']            = $this->getRedirectUrl();
+        $data['webhook']                 = $this->getWebhook();
         $data['allow_repeated_payments'] = $this->getAllowRepeatedPayments();
-        $data['send_email'] = $this->getSendEmail();
-        $data['send_sms'] = $this->getSendSms();
-        $data['expires_at'] = $this->getExpiresAt();
+        $data['send_email']              = $this->getSendEmail();
+        $data['send_sms']                = $this->getSendSms();
+        $data['expires_at']              = $this->getExpiresAt();
 
         return $data;
     }
@@ -39,7 +39,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $httpRequest = $this->createRequest('POST', $this->getEndpoint() . 'payment-requests/', $data);
+        $httpRequest  = $this->createRequest('POST', $this->getEndpoint() . 'payment-requests/', $data);
         $jsonResponse = $this->sendRequest($httpRequest);
 
         return $this->response = new Response($this, $jsonResponse);
@@ -152,7 +152,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getAllowRepeatedPayments()
     {
-        return (bool)$this->getParameter('allow_repeated_payments');
+        return (bool) $this->getParameter('allow_repeated_payments');
     }
 
     /**
@@ -161,7 +161,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function setAllowRepeatedPayments($value)
     {
-        return $this->setParameter('allow_repeated_payments', (bool)$value);
+        return $this->setParameter('allow_repeated_payments', (bool) $value);
     }
 
     /**
@@ -169,7 +169,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getSendEmail()
     {
-        return (bool)$this->getParameter('send_email');
+        return (bool) $this->getParameter('send_email');
     }
 
     /**
@@ -178,7 +178,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function setSendEmail($value)
     {
-        return $this->setParameter('send_email', (bool)$value);
+        return $this->setParameter('send_email', (bool) $value);
     }
 
     /**
@@ -186,7 +186,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getSendSms()
     {
-        return (bool)$this->getParameter('send_sms');
+        return (bool) $this->getParameter('send_sms');
     }
 
     /**
@@ -195,7 +195,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function setSendSms($value)
     {
-        return $this->setParameter('send_sms', (bool)$value);
+        return $this->setParameter('send_sms', (bool) $value);
     }
 
     /**
