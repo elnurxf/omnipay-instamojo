@@ -3,7 +3,6 @@
 namespace Omnipay\Instamojo\Message;
 
 use Guzzle\Http\Message\RequestInterface;
-use Guzzle\Http\Exception\ClientErrorResponseException;
 
 /**
  * Class AbstractRequest
@@ -28,26 +27,21 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function createRequest($method, $endpoint, $data = null)
     {
-        return $this->httpClient->createRequest($method, $endpoint, null, $data);
+        return $this->httpClient->request($method, $endpoint, [
+            'Accept'       => 'application/json',
+            'Content-type' => 'application/json',
+            'X-Api-key'    => $this->getApiKey(),
+            'X-Auth-Token' => $this->getAuthToken(),
+        ], json_encode($data));
     }
 
     /**
      * @param RequestInterface $httpRequest
      * @return array|bool|float|int|string
      */
-    public function sendRequest(RequestInterface $httpRequest)
+    public function sendRequest($response)
     {
-        $httpRequest
-            ->setHeader('X-Api-key', $this->getApiKey())
-            ->setHeader('X-Auth-Token', $this->getAuthToken());
-
-        try {
-            $httpResponse = $httpRequest->send();
-        } catch (ClientErrorResponseException $e) {
-            $httpResponse = $e->getResponse();
-        }
-
-        return $httpResponse->json();
+        return json_decode($response->getBody()->getContents(), true);
     }
 
     /**
